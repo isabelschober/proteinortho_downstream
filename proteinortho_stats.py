@@ -40,6 +40,8 @@ def main(argv):
 				seqtype="protein sequences"
 			elif ".ffn" in lsplit[-1]:
 				seqtype="nucleotide sequences"
+			else:
+				seqtype="unknown"
 				
 		else:
 			count_pan+=1
@@ -60,29 +62,30 @@ def main(argv):
 				if split.strip()!="*":
 					for key in genomes.keys():
 						if key.split("_")[0]==str(n):
-							genomes[key][0]+=1
+							genomes[key][0]+=len(split.split(","))
 				n+=1
 				
-	for key in genomes.keys():
+	for key in list(genomes.keys()):
 		genomes["_".join(key.split("_")[1:])]=genomes[key]
 		del genomes[key]
 
-	print "\n",args.proteinortho,"\n"
+	print("\n"+args.proteinortho+"\n")
 	if mode=="basic" or mode=="all":
-		print "Number of genomes:", number_genomes
-		print "Sequence type:", seqtype
-		print "Pan-genome count:", count_pan
-		print "Core-genome count:", count_core, "\n"
+		print("Number of genomes: "+str(number_genomes))
+		print("Sequence type: "+seqtype)
+		print("Pan-genome count: "+str(count_pan))
+		print("Core-genome count: "+str(count_core)+"\n")
 	if mode=="input" or mode=="all":
-		print "Number of input sequences per strain"
+		print("Number of input sequences per strain")
 		for key in sorted(genomes.keys()):
-			print key+":",genomes[key][0]
+			print(key+": "+str(genomes[key][0]))
 	if mode=="unique" or mode=="all":
-		print "\n", "Number of unique sequences per strain"
+		print("\n"+"Number of unique sequences per strain")
 		for key in sorted(genomes.keys()):
-			print key+":",genomes[key][1]
-	print
+			print(key+": "+str(genomes[key][1]))
+
 	
 	
 if __name__ == "__main__":
    main(sys.argv)
+
