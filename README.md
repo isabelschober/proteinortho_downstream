@@ -27,7 +27,7 @@ optional arguments:
 
 # proteinortho_numeric
 
-This script transforms Proteinortho ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124)) output into a numeric or a binary matrix.
+This script transforms Proteinortho ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124)) output into a numeric or a binary matrix
 
 Proteinortho must have been run using the "-singles" option!
 
