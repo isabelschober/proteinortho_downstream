@@ -57,27 +57,28 @@ optional arguments:
 This script finds all group-specific core gene families (families with orthologs present in all genomes of one group 'groupA', but in none of the other 'groupB') and extracts a reference sequence for each family. GroupA must be defined by listing all genomes in the group, all other genomes belong to groupB.
 
 Proteinortho must have been run using the "-singles" option!
+One of the exact faa/ffn files from groupA used for the Proteinortho analysis must be used as reference.
 
 ```bash
-usage: proteinortho_group_specific.py [-h] -p PROTEINORTHO -f FOLDER -a GROUPA
-                                      [-o OUTPUT]
+usage: proteinortho_group_specific.py [-h] -p PROTEINORTHO -a GROUPA -r
+                                      REFERENCE [-o OUTPUT]
 
 optional arguments:
   -h, --help            show this help message and exit
   -p PROTEINORTHO, --proteinortho PROTEINORTHO
                         <my_project>.proteinortho Proteinortho output
                         calculated with --singles option
-  -f FOLDER, --folder FOLDER
-                        Path to folder containing the files that were used as
-                        input for proteinortho (faa or ffn)
   -a GROUPA, --groupA GROUPA
                         <strainA1.faa,strainA2.faa,strainA3.faa,...>: faa/ffn
                         file names of all genomes in "groupA". Comma separated
                         without spaces.
+  -r REFERENCE, --reference REFERENCE
+                        Path to one of the faa/ffn files from groupA used for
+                        the Proteinortho analysis to extract reference
+                        sequences from.
   -o OUTPUT, --output OUTPUT
                         A string denoting the output fasta file of this
                         script.
-
 ```
 
 
