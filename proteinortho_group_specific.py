@@ -13,12 +13,12 @@ Define one group, all others are in the other group
 
 Usage:
 
-python proteinortho_parser3.py -p <my_project>.proteinortho -f <faa_folder> -o <output_string> 
+python proteinortho_parser3.py -p <my_project>.proteinortho -r <reference_file> -o <output_string> 
 -a <strainA1.faa,strainA2.faa,strainA3.faa,...> 
 
 <my_project>.proteinortho: proteinortho output calculated with --singles option
 
-<faa_folder>: path to folder containing the files that were used as input for proteinortho (faa or ffn)
+<reference>: path to reference faa/ffn file from groupA
 
 <output_string>: a strain denoting the output fasta file of this script.
 
@@ -33,13 +33,13 @@ def main(argv):
     
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-p', '--proteinortho', required=True, help='<my_project>.proteinortho Proteinortho output calculated with --singles option')
-	parser.add_argument('-f', '--folder', required=True, help='Path to folder containing the files that were used as input for proteinortho (faa or ffn)')
 	parser.add_argument('-a', '--groupA', required=True, help='<strainA1.faa,strainA2.faa,strainA3.faa,...>: faa/ffn file names of all genomes in "groupA". Comma separated without spaces.')
+	parser.add_argument('-r', '--reference', required=True, help='Path to one of the faa/ffn files from groupA used for the Proteinortho analysis to extract reference sequences from.')
 	parser.add_argument('-o', '--output', default="Group_specific_proteinortho", help='A string denoting the output fasta file of this script.')
 	args = parser.parse_args()
     
 	proteinortho=open(args.proteinortho)
-	faa_folder=args.folder
+	reference=args.reference
 	out_string=args.output
 	setA_strains=args.groupA.split(",")
 
@@ -95,7 +95,7 @@ def main(argv):
 
 	
 
-	strainA_faa=SeqIO.index(faa_folder+"/"+setA_strains[0],"fasta")
+	strainA_faa=SeqIO.index(reference,"fasta")
 	out_faa_A=open(out_string+".fasta","w")
 
 		
