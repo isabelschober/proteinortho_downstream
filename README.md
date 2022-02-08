@@ -1,6 +1,8 @@
+Scripts for downstream analysis using Proteinortho ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124)) output
+
 # proteinortho_stats
 
-This script counts Core- and Pan-genomes and strain-specific genes calculated with Proteinortho ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124))
+This script counts Core- and Pan-genomes and strain-specific genes calculated with Proteinortho 
 
 Proteinortho must have been run using the "-singles" option!
 
@@ -27,7 +29,7 @@ optional arguments:
 
 # proteinortho_numeric
 
-This script transforms Proteinortho ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124)) output into a numeric or a binary matrix
+This script transforms Proteinortho output into a numeric or a binary matrix
 
 Proteinortho must have been run using the "-singles" option!
 
@@ -49,9 +51,39 @@ optional arguments:
 
 ```
 
+
+# proteinortho_group_specific
+
+This script finds all group-specific core gene families (families with orthologs present in all genomes of one group 'groupA', but in none of the other 'groupB') and extracts a reference sequence for each family. GroupA must be defined by listing all genomes in the group, all other genomes belong to groupB.
+
+Proteinortho must have been run using the "-singles" option!
+
+```bash
+usage: proteinortho_group_specific.py [-h] -p PROTEINORTHO -f FOLDER -a GROUPA
+                                      [-o OUTPUT]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PROTEINORTHO, --proteinortho PROTEINORTHO
+                        <my_project>.proteinortho Proteinortho output
+                        calculated with --singles option
+  -f FOLDER, --folder FOLDER
+                        Path to folder containing the files that were used as
+                        input for proteinortho (faa or ffn)
+  -a GROUPA, --groupA GROUPA
+                        <strainA1.faa,strainA2.faa,strainA3.faa,...>: faa/ffn
+                        file names of all genomes in "groupA". Comma separated
+                        without spaces.
+  -o OUTPUT, --output OUTPUT
+                        A string denoting the output fasta file of this
+                        script.
+
+```
+
+
 # proteinortho_curves
 
-This script creates accumulation curves for pan- and core-genomes calculated with Proteinortho  ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124))
+This script creates accumulation curves for pan- and core-genomes calculated with Proteinortho 
 
 -> [proteinortho_curves](https://github.com/isabelschober/proteinortho_curves)
 
