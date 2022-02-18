@@ -47,7 +47,7 @@ def main(argv):
 	
 	setA_cols=[]
 	setB_cols=[]
-    
+	setA_ref=""
     
     #collect locus_tags of the sequences to be printed to output
     
@@ -63,7 +63,7 @@ def main(argv):
 				else:
 					setB_cols.append(n)
 				
-				if setA_strains[0]==lsplit[n].strip():
+				if reference==lsplit[n].strip():
 					setA_ref=n
 			print()
 			print(len(setA_cols))
