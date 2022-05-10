@@ -63,7 +63,7 @@ def main(argv):
 				else:
 					setB_cols.append(n)
 				
-				if reference==lsplit[n].strip():
+				if reference.split("/")[-1]==lsplit[n].strip():
 					setA_ref=n
 			print()
 			print(len(setA_cols))
